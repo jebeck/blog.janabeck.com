@@ -6,7 +6,7 @@ import { MOBILE_MEDIA_QUERY } from 'typography-breakpoint-constants'
 
 import 'normalize.css'
 
-import Header from './header'
+import Header from './Header'
 import Footer from './Footer'
 
 const ResponsiveMain = styled.main`
