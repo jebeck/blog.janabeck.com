@@ -6,16 +6,20 @@ import * as colors from '../utils/colors'
 const LinkWithOverline = styled(Link)`
   color: ${colors.red};
   text-decoration: none;
-  :hover,
-  :active {
+  &:hover,
+  &:active {
     color: ${colors.darkPurple};
     text-decoration: overline;
   }
-  :visited {
+  &:visited {
     color: ${colors.teal};
-    :hover {
+    &:hover {
       color: ${colors.darkPurple};
     }
+  }
+  &.active {
+    color: ${colors.darkPurple};
+    text-decoration: overline;
   }
 `
 
