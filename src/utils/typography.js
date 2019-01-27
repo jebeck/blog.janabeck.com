@@ -43,6 +43,7 @@ const theme = {
       color: gray(41),
       paddingLeft: rhythm(13 / 16),
       marginLeft: 0,
+      // TODO: customize this color (it's a remnant from Grand View)
       borderLeft: `${rhythm(3 / 16)} solid #fca206`,
     },
     'blockquote > :last-child': {
@@ -68,6 +69,9 @@ const theme = {
       fontFamily: options.headerFontFamily.join(', '),
     },
     header: {
+      fontFamily: options.headerFontFamily.join(', '),
+    },
+    '#recent-posts': {
       fontFamily: options.headerFontFamily.join(', '),
     },
   }),

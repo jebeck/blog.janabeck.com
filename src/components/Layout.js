@@ -1,21 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
-import styled from 'styled-components'
-import { MOBILE_MEDIA_QUERY } from 'typography-breakpoint-constants'
 
 import 'normalize.css'
 
 import Header from './Header'
 import Footer from './Footer'
-
-const ResponsiveMain = styled.main`
-  margin: 0 auto;
-  ${MOBILE_MEDIA_QUERY} {
-    max-width: 95%;
-  }
-  max-width: 36rem;
-`
+import GlobalStyles from '../styled/GlobalStyles'
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -30,8 +21,9 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
+        <GlobalStyles />
         <Header siteTitle={data.site.siteMetadata.title} />
-        <ResponsiveMain>{children}</ResponsiveMain>
+        <main>{children}</main>
         <Footer />
       </>
     )}
