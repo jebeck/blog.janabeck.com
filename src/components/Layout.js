@@ -7,6 +7,7 @@ import 'normalize.css'
 import Header from './Header'
 import Footer from './Footer'
 import GlobalStyles from '../styled/GlobalStyles'
+import { rhythm } from '../utils/typography'
 
 function Layout({ children }) {
   return (
@@ -21,7 +22,12 @@ function Layout({ children }) {
         }
       `}
       render={data => (
-        <div style={{ position: 'relative' }}>
+        <div
+          style={{
+            minHeight: `calc(100vh - ${rhythm(0.75)})`,
+            position: 'relative',
+          }}
+        >
           <GlobalStyles />
           <Header siteTitle={data.site.siteMetadata.title} />
           <main>{children}</main>

@@ -16,7 +16,6 @@ const GlobalStyles = createGlobalStyle`
     }
     margin: 0 auto;
     max-width: 36rem;
-    min-height: 100vh;
   }
 
   /* for syntax highlighting */
