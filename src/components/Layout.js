@@ -21,7 +21,7 @@ function Layout({ children, location }) {
           }
         }
       `}
-      render={data => (
+      render={() => (
         <div
           style={{
             minHeight: `calc(100vh - ${rhythm(0.75)})`,

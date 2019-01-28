@@ -53,6 +53,9 @@ BlogPost.propTypes = {
       html: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
 }
 
 export default BlogPost
