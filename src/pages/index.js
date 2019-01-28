@@ -5,10 +5,8 @@ import styled from 'styled-components'
 import { MOBILE_MEDIA_QUERY } from 'typography-breakpoint-constants'
 
 import Layout from '../components/Layout'
-import MatchesMobile from '../utils/MatchesMobile'
 import PostList from '../styled/PostList'
 import PostDetails from '../components/PostDetails'
-import { scale } from '../utils/typography'
 import SEO from '../components/SEO'
 
 const Container = styled.div`
@@ -22,6 +20,9 @@ const Container = styled.div`
 `
 
 const Heading = styled.h1`
+  ${MOBILE_MEDIA_QUERY} {
+    font-size: 1.5rem;
+  }
   font-weight: 900;
 `
 
@@ -35,14 +36,7 @@ function Index({
     <Layout>
       <SEO title={heading} keywords={['blog']} />
       <Container>
-        <MatchesMobile>
-          {matches => {
-            if (matches) {
-              return <Heading style={{ ...scale(0.5) }}>{heading}</Heading>
-            }
-            return <Heading style={{ ...scale(1) }}>{heading}</Heading>
-          }}
-        </MatchesMobile>
+        <Heading>{heading}</Heading>
         <PostList id="recent-posts">
           {edges.map(({ node }) => {
             return <PostDetails key={node.id} {...node} />

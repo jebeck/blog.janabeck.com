@@ -6,10 +6,8 @@ import { MOBILE_MEDIA_QUERY } from 'typography-breakpoint-constants'
 
 import Layout from '../components/Layout'
 import Link from '../styled/LinkWithOverline'
-import MatchesMobile from '../utils/MatchesMobile'
 import PostList from '../styled/PostList'
 import PostDetails from '../components/PostDetails'
-import { scale } from '../utils/typography'
 import SEO from '../components/SEO'
 
 const Container = styled.div`
@@ -23,7 +21,16 @@ const Container = styled.div`
 `
 
 const Heading = styled.h1`
+  ${MOBILE_MEDIA_QUERY} {
+    font-size: 1.5rem;
+  }
   font-weight: 900;
+`
+
+const Pre2019 = styled.h2`
+  ${MOBILE_MEDIA_QUERY} {
+  }
+  text-align: right;
 `
 
 function Posts({
@@ -36,52 +43,24 @@ function Posts({
     <Layout>
       <SEO title={heading} keywords={['blog']} />
       <Container>
-        <MatchesMobile>
-          {matches => {
-            if (matches) {
-              return <Heading style={{ ...scale(0.5) }}>{heading}</Heading>
-            }
-            return <Heading style={{ ...scale(1) }}>{heading}</Heading>
-          }}
-        </MatchesMobile>
+        <Heading>{heading}</Heading>
         <PostList id="recent-posts">
           {edges.map(({ node }) => {
             return <PostDetails key={node.id} {...node} />
           })}
         </PostList>
-        <MatchesMobile>
-          {matches => {
-            if (matches) {
-              return (
-                <h2 style={{ textAlign: 'right', ...scale(3 / 10) }}>
-                  pre-2019 posts on{' '}
-                  <Link
-                    as="a"
-                    href="http://janabeck.com/archive/"
-                    rel="noopener noreferrer"
-                    style={{ textDecoration: 'underline' }}
-                    target="_blank"
-                  >
-                    janabeck.com
-                  </Link>
-                </h2>
-              )
-            }
-            return (
-              <h2 style={{ textAlign: 'right' }}>
-                pre-2019 posts on{' '}
-                <Link
-                  as="a"
-                  href="http://janabeck.com/archive/"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  janabeck.com
-                </Link>
-              </h2>
-            )
-          }}
-        </MatchesMobile>
+        <Pre2019>
+          pre-2019 posts on{' '}
+          <Link
+            as="a"
+            href="http://janabeck.com/archive/"
+            rel="noopener noreferrer"
+            style={{ textDecoration: 'underline' }}
+            target="_blank"
+          >
+            janabeck.com
+          </Link>
+        </Pre2019>
       </Container>
     </Layout>
   )
