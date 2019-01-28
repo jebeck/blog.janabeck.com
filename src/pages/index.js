@@ -25,11 +25,11 @@ const Heading = styled.h1`
   font-weight: 900;
 `
 
-const Index = ({
+function Index({
   data: {
     allMarkdownRemark: { edges },
   },
-}) => {
+}) {
   const heading = 'recent posts'
   return (
     <Layout>

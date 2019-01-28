@@ -26,11 +26,11 @@ const Heading = styled.h1`
   font-weight: 900;
 `
 
-const Posts = ({
+function Posts({
   data: {
     allMarkdownRemark: { edges },
   },
-}) => {
+}) {
   const heading = 'all posts'
   return (
     <Layout>

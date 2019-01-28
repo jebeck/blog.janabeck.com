@@ -2,7 +2,7 @@ import React from 'react'
 
 import { rhythm, scale } from '../utils/typography'
 
-const Footer = () => {
+function Footer() {
   const currentYear = new Date().getFullYear()
   return (
     <footer

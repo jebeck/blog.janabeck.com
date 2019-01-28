@@ -53,8 +53,7 @@ const NavLink = styled(Link).attrs(() => {
   font-weight: 400;
   padding: 0 0.75rem;
 `
-
-const Header = () => {
+function Header() {
   return (
     <ResponsiveHeader>
       <Nav>
