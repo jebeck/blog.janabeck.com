@@ -9,10 +9,11 @@ const GlobalStyles = createGlobalStyle`
     color: #2e0927;
   }
   main {
-    margin: 0 auto;
     ${MOBILE_MEDIA_QUERY} {
-      max-width: 95%;
+      margin: 0 0.5rem;
+      width: calc(100% - 1rem);
     }
+    margin: 0 auto;
     max-width: 36rem;
     min-height: 100vh;
   }

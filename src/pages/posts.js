@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { MOBILE_MEDIA_QUERY } from 'typography-breakpoint-constants'
 
 import Layout from '../components/Layout'
+import Link from '../styled/LinkWithOverline'
 import MatchesMobile from '../utils/MatchesMobile'
 import PostList from '../styled/PostList'
 import PostDetails from '../components/PostDetails'
@@ -25,12 +26,12 @@ const Heading = styled.h1`
   font-weight: 900;
 `
 
-const Index = ({
+const Posts = ({
   data: {
     allMarkdownRemark: { edges },
   },
 }) => {
-  const heading = 'recent posts'
+  const heading = 'all posts'
   return (
     <Layout>
       <SEO title={heading} keywords={['blog']} />
@@ -48,12 +49,45 @@ const Index = ({
             return <PostDetails key={node.id} {...node} />
           })}
         </PostList>
+        <MatchesMobile>
+          {matches => {
+            if (matches) {
+              return (
+                <h2 style={{ textAlign: 'right', ...scale(3 / 10) }}>
+                  pre-2019 posts on{' '}
+                  <Link
+                    as="a"
+                    href="http://janabeck.com/archive/"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: 'underline' }}
+                    target="_blank"
+                  >
+                    janabeck.com
+                  </Link>
+                </h2>
+              )
+            }
+            return (
+              <h2 style={{ textAlign: 'right' }}>
+                pre-2019 posts on{' '}
+                <Link
+                  as="a"
+                  href="http://janabeck.com/archive/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  janabeck.com
+                </Link>
+              </h2>
+            )
+          }}
+        </MatchesMobile>
       </Container>
     </Layout>
   )
 }
 
-Index.propTypes = {
+Posts.propTypes = {
   data: PropTypes.shape({
     allMarkdownRemark: PropTypes.shape({
       edges: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -63,10 +97,7 @@ Index.propTypes = {
 
 export const query = graphql`
   query {
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      limit: 3
-    ) {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       totalCount
       edges {
         node {
@@ -87,4 +118,4 @@ export const query = graphql`
   }
 `
 
-export default Index
+export default Posts

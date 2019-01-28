@@ -4,19 +4,21 @@ import { MOBILE_MEDIA_QUERY } from 'typography-breakpoint-constants'
 
 import Link from '../styled/LinkWithOverline'
 import { scale } from '../utils/typography'
-import { seafoam } from '../utils/colors'
+import { lightSeafoam, seafoam } from '../utils/colors'
 
 const ResponsiveHeader = styled.header`
   ${MOBILE_MEDIA_QUERY} {
-    margin: 0.25rem 0.5rem;
+    margin: 0 0.5rem 0.25rem;
+    padding-top: 0;
     width: calc(100% - 1rem);
   }
+  background-color: ${lightSeafoam};
   border-bottom: 1px solid ${seafoam};
   left: 0;
   line-height: 51.2px;
   margin: 0 1rem 0.5rem;
   padding-top: 8px;
-  position: fixed;
+  position: sticky;
   top: 0;
   width: calc(100% - 2rem);
 `

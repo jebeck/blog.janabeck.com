@@ -9,11 +9,12 @@ const theme = {
   title: 'janabeck.com',
   includeNormalize: false,
   baseFontSize: '24px',
-  baseLineHeight: 1.6875,
+  // baseLineHeight: 1.6875,
+  baseLineHeight: 1.4,
   googleFonts: [
     {
       name: 'Lato',
-      styles: ['400', '700', '900'],
+      styles: ['300', '400', '700', '900'],
     },
     {
       name: 'Gentium Book Basic',
