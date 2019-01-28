@@ -1,22 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 
 import { darkGrey } from '../utils/colors'
 import Link from '../styled/LinkWithOverline'
 import MatchesMobile from '../utils/MatchesMobile'
 import PostSummary from '../components/PostSummary'
-import { scale } from '../utils/typography'
+import { rhythm } from '../utils/typography'
 import Tags from './Tags'
 import TimeToRead from './TimeToRead'
-
-const ReadTime = styled(TimeToRead)`
-  text-align: right;
-`
-
-const PostDate = styled.span`
-  color: ${darkGrey};
-`
 
 function PostDetails({
   fields: { slug },
@@ -29,8 +20,9 @@ function PostDetails({
         {matches => {
           if (matches) {
             return (
-              <div style={{ ...scale(-0.25) }}>
-                <PostDate>{`${date}: `}</PostDate>
+              // manually calculate lineHeight because scale() doesn't go below base when negative :(
+              <div style={{ fontSize: '0.875rem', lineHeight: 1.5 }}>
+                <span style={{ color: darkGrey }}>{`${date}: `}</span>
                 <Link to={slug} style={{ textDecoration: 'underline' }}>
                   {title}
                 </Link>
@@ -39,23 +31,23 @@ function PostDetails({
           }
           return (
             <>
-              <ReadTime timeToRead={timeToRead} />
-              <div style={{ ...scale(0.5) }}>
-                <PostDate>{`${date}: `}</PostDate>
+              <TimeToRead timeToRead={timeToRead} />
+              <div style={{ fontSize: '1.3333333333rem', lineHeight: 1.5 }}>
+                <span style={{ color: darkGrey }}>{`${date}: `}</span>
                 <Link to={slug}>{title}</Link>
               </div>
             </>
           )
         }}
       </MatchesMobile>
-      <div>
+      <div style={{ marginBottom: rhythm(0.25) }}>
         <PostSummary summary={summary} />
         <Tags tags={tags} />
       </div>
       <MatchesMobile>
         {matches => {
           if (matches) {
-            return <ReadTime timeToRead={timeToRead} />
+            return <TimeToRead timeToRead={timeToRead} />
           }
           return null
         }}

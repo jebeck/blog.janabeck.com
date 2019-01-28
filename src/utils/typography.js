@@ -9,20 +9,19 @@ const theme = {
   title: 'janabeck.com',
   includeNormalize: false,
   baseFontSize: '24px',
-  // baseLineHeight: 1.6875,
-  baseLineHeight: 1.4,
+  baseLineHeight: 1.6875,
   googleFonts: [
     {
       name: 'Lato',
       styles: ['300', '400', '700', '900'],
     },
     {
-      name: 'Gentium Book Basic',
+      name: 'Georgia',
       styles: ['400', '400i', '700'],
     },
   ],
   headerFontFamily: ['Lato', 'sans-serif'],
-  bodyFontFamily: ['Gentium Book Basic', 'serif'],
+  bodyFontFamily: ['Georgia', 'serif'],
   headerColor: colors.purple,
   bodyColor: colors.teal,
   headerWeight: 700,
@@ -63,6 +62,34 @@ const theme = {
         marginLeft: rhythm(-3 / 4),
         marginRight: 0,
         paddingLeft: rhythm(9 / 16),
+      },
+      code: {
+        fontSize: '0.75rem',
+      },
+      'pre > code': {
+        fontSize: '0.625rem',
+      },
+      'h1,h2,h3,h4,h5,h6': {
+        marginBottom: rhythm(0.5),
+        marginTop: rhythm(0.75),
+      },
+      h1: {
+        fontSize: '1.5rem',
+      },
+      h2: {
+        fontSize: '1.25rem',
+      },
+      h3: {
+        fontSize: '1.125rem',
+      },
+      h4: {
+        fontSize: '1rem',
+      },
+      h5: {
+        fontSize: '0.875rem',
+      },
+      h6: {
+        fontSize: '0.75rem',
       },
     },
     footer: {

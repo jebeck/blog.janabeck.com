@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { MOBILE_MEDIA_QUERY } from 'typography-breakpoint-constants'
 
 import Link from '../styled/LinkWithOverline'
-import { scale } from '../utils/typography'
 import { lightSeafoam, seafoam } from '../utils/colors'
 
 const ResponsiveHeader = styled.header`
@@ -47,7 +46,7 @@ const BackLink = styled(Link)`
 `
 
 const NavLink = styled(Link).attrs(() => {
-  return { activeClassName: 'active', style: { ...scale(0) } }
+  return { activeClassName: 'active' }
 })`
   ${MOBILE_MEDIA_QUERY} {
     padding: 0 0.25rem;

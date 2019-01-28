@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { rhythm, scale } from '../utils/typography'
+import { rhythm } from '../utils/typography'
 
 function Footer() {
   const currentYear = new Date().getFullYear()
@@ -8,9 +8,9 @@ function Footer() {
     <footer
       style={{
         bottom: rhythm(-0.75),
+        fontSize: '0.75rem',
         position: 'absolute',
         right: rhythm(0.25),
-        ...scale(-0.5),
       }}
     >
       {`© jana e. beck, 2019${currentYear > '2019' ? `–${currentYear}` : ''}`}

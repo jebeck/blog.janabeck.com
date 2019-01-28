@@ -32,7 +32,10 @@ const GlobalStyles = createGlobalStyle`
 
   /* for footnotes from Markdown */
   li[id*="fn-"] {
-      font-size: 0.875rem;
+    ${MOBILE_MEDIA_QUERY} {
+      font-size: 0.675rem;
+    }
+    font-size: 0.875rem;
     p {
       display: inline;
     }
