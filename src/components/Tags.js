@@ -17,6 +17,7 @@ const Tag = styled.div`
 function Tags({ tags }) {
   return (
     <div
+      id="tags"
       style={{ display: 'flex', justifyContent: 'flex-end', ...scale(-3 / 5) }}
     >
       {tags.map(tag => (

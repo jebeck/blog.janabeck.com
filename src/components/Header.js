@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { MOBILE_MEDIA_QUERY } from 'typography-breakpoint-constants'
 
@@ -37,7 +38,7 @@ const Nav = styled.nav`
   justify-content: space-between;
 `
 
-const JanaBeckDotComLink = styled(Link)`
+const BackLink = styled(Link)`
   font-size: 20px;
   font-weight: 900;
   &:hover {
@@ -54,16 +55,26 @@ const NavLink = styled(Link).attrs(() => {
   font-weight: 400;
   padding: 0 0.75rem;
 `
-function Header() {
+
+function Header({ showBackToPostsLink }) {
   return (
     <ResponsiveHeader>
       <Nav>
-        <JanaBeckDotComLink as="a" href="http://janabeck.com">
-          <span role="img" aria-label="left arrow">
-            ⬅️
-          </span>
-          &nbsp;back to janabeck.com
-        </JanaBeckDotComLink>
+        {showBackToPostsLink ? (
+          <BackLink to="/">
+            <span role="img" aria-label="left arrow">
+              ⬅️
+            </span>
+            &nbsp;back to recent posts
+          </BackLink>
+        ) : (
+          <BackLink as="a" href="http://janabeck.com">
+            <span role="img" aria-label="left arrow">
+              ⬅️
+            </span>
+            &nbsp;back to janabeck.com
+          </BackLink>
+        )}
         <div>
           <NavLink to={`/`}>recent</NavLink>
           <NavLink to={`/posts/`}>all posts</NavLink>
@@ -71,6 +82,10 @@ function Header() {
       </Nav>
     </ResponsiveHeader>
   )
+}
+
+Header.propTypes = {
+  showBackToPostsLink: PropTypes.bool.isRequired,
 }
 
 export default Header

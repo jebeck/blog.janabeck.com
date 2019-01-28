@@ -9,7 +9,7 @@ import Footer from './Footer'
 import GlobalStyles from '../styled/GlobalStyles'
 import { rhythm } from '../utils/typography'
 
-function Layout({ children }) {
+function Layout({ children, location }) {
   return (
     <StaticQuery
       query={graphql`
@@ -29,7 +29,7 @@ function Layout({ children }) {
           }}
         >
           <GlobalStyles />
-          <Header siteTitle={data.site.siteMetadata.title} />
+          <Header showBackToPostsLink={Boolean(location)} />
           <main>{children}</main>
           <Footer />
         </div>
@@ -40,6 +40,7 @@ function Layout({ children }) {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  location: PropTypes.shape({ pathname: PropTypes.string }),
 }
 
 export default Layout

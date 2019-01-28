@@ -8,16 +8,17 @@ import { rhythm, scale } from '../utils/typography'
 import SEO from '../components/SEO'
 import Tags from '../components/Tags'
 
-function BlogPost({ data: { markdownRemark } }) {
+function BlogPost({ data: { markdownRemark }, location }) {
   const {
     frontmatter: { date, summary, tags, title },
     html,
   } = markdownRemark
 
   return (
-    <Layout>
+    <Layout location={location}>
       <SEO title={title} description={summary} keywords={tags} />
       <h1>{title}</h1>
+      <Tags tags={tags} />
       <div style={{ color: darkPurple }}>
         <p
           style={{
@@ -25,13 +26,12 @@ function BlogPost({ data: { markdownRemark } }) {
             color: darkGrey,
             display: `block`,
             marginBottom: rhythm(0.25),
-            marginTop: rhythm(-1),
+            marginTop: rhythm(0.5),
             textAlign: 'right',
           }}
         >
           {date}
         </p>
-        <Tags tags={tags} />
         <div
           dangerouslySetInnerHTML={{ __html: html }}
           style={{ lineHeight: 1.6875, marginTop: rhythm(1) }}

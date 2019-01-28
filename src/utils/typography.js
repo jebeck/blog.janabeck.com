@@ -75,6 +75,9 @@ const theme = {
     '#recent-posts': {
       fontFamily: options.headerFontFamily.join(', '),
     },
+    '#tags': {
+      fontFamily: options.headerFontFamily.join(', '),
+    },
   }),
 }
 
