@@ -7,8 +7,8 @@ function Footer() {
   return (
     <footer
       style={{
-        bottom: rhythm(0.125),
-        position: 'fixed',
+        bottom: rhythm(-0.75),
+        position: 'absolute',
         right: rhythm(0.25),
         ...scale(-0.5),
       }}

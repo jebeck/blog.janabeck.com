@@ -21,12 +21,12 @@ function Layout({ children }) {
         }
       `}
       render={data => (
-        <>
+        <div style={{ position: 'relative' }}>
           <GlobalStyles />
           <Header siteTitle={data.site.siteMetadata.title} />
           <main>{children}</main>
           <Footer />
-        </>
+        </div>
       )}
     />
   )

@@ -21,6 +21,7 @@ const ResponsiveHeader = styled.header`
   position: sticky;
   top: 0;
   width: calc(100% - 2rem);
+  z-index: 100;
 `
 
 const Nav = styled.nav`

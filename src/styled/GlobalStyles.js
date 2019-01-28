@@ -8,6 +8,7 @@ const GlobalStyles = createGlobalStyle`
     background-color: ${lightSeafoam};
     color: #2e0927;
   }
+
   main {
     ${MOBILE_MEDIA_QUERY} {
       margin: 0 0.5rem;
@@ -17,9 +18,27 @@ const GlobalStyles = createGlobalStyle`
     max-width: 36rem;
     min-height: 100vh;
   }
+
+  /* for syntax highlighting */
+  :not(pre) > code[class*="language-"] {
+    padding: 0.125em 0.25em;
+  }
+  .gatsby-highlight + p {
+    margin-top: 1.4rem;
+  }
   pre {
     border-radius: 0.5rem;
   }
+  /* endfor */
+
+  /* for footnotes from Markdown */
+  li[id*="fn-"] {
+      font-size: 0.875rem;
+    p {
+      display: inline;
+    }
+  }
+  /* endfor */
 `
 
 export default GlobalStyles
