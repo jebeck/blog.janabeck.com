@@ -4,7 +4,6 @@ import Typography from 'typography'
 
 import * as colors from './colors'
 
-// a slightly-modified typography-theme-grand-view
 const theme = {
   title: 'janabeck.com',
   includeNormalize: false,
@@ -109,6 +108,8 @@ const theme = {
 }
 
 const typography = new Typography(theme)
+
+delete typography.googleFonts
 
 export default typography
 export const rhythm = typography.rhythm
