@@ -2,7 +2,7 @@
 module.exports = {
   siteMetadata: {
     title: 'jana e. beck',
-    description: 'personal website of jana e. beck',
+    description: 'blog-shaped interwebs space of jana e. beck',
     author: 'jana e. beck',
   },
   plugins: [
@@ -59,7 +59,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'janabeck.com',
+        name: 'blog.janabeck.com',
         short_name: 'jana e. beck',
         start_url: '/',
         background_color: '#c7fdfa',
