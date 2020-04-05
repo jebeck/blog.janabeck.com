@@ -1,12 +1,30 @@
-import { createGlobalStyle } from 'styled-components'
-import { MOBILE_MEDIA_QUERY } from 'typography-breakpoint-constants'
+import { createGlobalStyle } from "styled-components"
+import { MOBILE_MEDIA_QUERY } from "typography-breakpoint-constants"
 
-import { lightSeafoam } from '../utils/colors'
+import { bg, text } from "../../janabeck.com/src/utils/colors"
+
+const LINK_COLORS = {
+  active: "#ff6a7e",
+  base: "#ff5068",
+  underline: "#6b2831",
+}
 
 const GlobalStyles = createGlobalStyle`
   :root {
-    background-color: ${lightSeafoam};
-    color: #2e0927;
+    background-color: ${bg};
+    color: ${text};
+  }
+
+  a {
+    color: ${LINK_COLORS.base};
+    text-decoration: underline double ${LINK_COLORS.underline};
+    &:hover,
+    &:active {
+      color: ${LINK_COLORS.active};
+    }
+    &.active {
+      color: ${LINK_COLORS.active};
+    }
   }
 
   main {
@@ -22,7 +40,7 @@ const GlobalStyles = createGlobalStyle`
   :not(pre) > code[class*="language-"] {
     padding: 0.125em 0.25em;
   }
-  .gatsby-highlight + p {
+  .gatsby-highlight + p, h1, h2, h3, h4, h5, h6 {
     margin-top: 1.4rem;
   }
   pre {
@@ -38,6 +56,9 @@ const GlobalStyles = createGlobalStyle`
     font-size: 0.875rem;
     p {
       display: inline;
+    }
+    a {
+      text-decoration: none;
     }
   }
   /* endfor */

@@ -29,6 +29,7 @@
     "gatsby-transformer-sharp": "^2.1.12",
     "gray-percentage": "^2.0.0",
     "normalize.css": "^8.0.1",
+    "polished": "^3.5.1",
     "prismjs": "^1.15.0",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
@@ -40,6 +41,7 @@
     "styled-theming": "^2.2.0",
     "typeface-exo-2": "^1.1.4",
     "typeface-source-sans-pro": "^1.1.5",
+    "typeface-ubuntu-mono": "0.0.72",
     "typography": "^0.16.18",
     "typography-breakpoint-constants": "^0.16.18"
   },

@@ -1,12 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import React from "react"
+import PropTypes from "prop-types"
+import styled from "styled-components"
+import { transparentize } from "polished"
 
-import { seafoam } from '../utils/colors'
-import { rhythm } from '../../janabeck.com/src/utils/typography'
+import { analogous } from "../../janabeck.com/src/utils/colors"
+import { rhythm } from "../../janabeck.com/src/utils/typography"
 
 const Tag = styled.div`
-  background-color: ${seafoam};
+  background-color: ${transparentize(0.33, analogous[4])};
   border-radius: ${rhythm(0.125)};
   display: inline-block;
   font-weight: 300;
@@ -19,10 +20,10 @@ function Tags({ tags }) {
     <div
       id="tags"
       style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        fontSize: '0.6666666667rem',
-        justifyContent: 'flex-end',
+        display: "flex",
+        flexWrap: "wrap",
+        fontSize: "0.6666666667rem",
+        justifyContent: "flex-end",
       }}
     >
       {tags.map((tag) => (

@@ -1,14 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import { MOBILE_MEDIA_QUERY } from 'typography-breakpoint-constants'
+import React from "react"
+import PropTypes from "prop-types"
+import { Link } from "gatsby"
+import styled from "styled-components"
+import { MOBILE_MEDIA_QUERY } from "typography-breakpoint-constants"
 
-import { darkGrey } from '../utils/colors'
-import Link from '../styled/LinkWithOverline'
-import PostSummary from '../components/PostSummary'
-import { rhythm } from '../../janabeck.com/src/utils/typography'
-import Tags from './Tags'
-import TimeToRead from './TimeToRead'
+import { text } from "../../janabeck.com/src/utils/colors"
+import PostSummary from "../components/PostSummary"
+import Tags from "./Tags"
+import TimeToRead from "./TimeToRead"
 
 const MainText = styled.div`
   ${MOBILE_MEDIA_QUERY} {
@@ -20,7 +19,7 @@ const MainText = styled.div`
   font-size: 1.3333333333rem;
   line-height: 1.5;
   span {
-    color: ${darkGrey};
+    color: ${text};
   }
 `
 
@@ -32,16 +31,12 @@ function PostDetails({
   return (
     <li>
       <TimeToRead timeToRead={timeToRead} />
-      <MainText style={{ fontSize: '0.875rem', lineHeight: 1.5 }}>
-        <span style={{ color: darkGrey }}>{`${date}: `}</span>
-        <Link to={slug} style={{ textDecoration: 'underline' }}>
-          {title}
-        </Link>
+      <MainText style={{ fontSize: "0.875rem", lineHeight: 1.5 }}>
+        <span style={{ color: text }}>{`${date}: `}</span>
+        <Link to={slug}>{title}</Link>
       </MainText>
-      <div style={{ marginBottom: rhythm(0.25) }}>
-        <PostSummary summary={summary} />
-        <Tags tags={tags} />
-      </div>
+      <PostSummary summary={summary} />
+      <Tags tags={tags} />
     </li>
   )
 }

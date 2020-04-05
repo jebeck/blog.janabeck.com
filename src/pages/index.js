@@ -1,13 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
-import styled from 'styled-components'
-import { MOBILE_MEDIA_QUERY } from 'typography-breakpoint-constants'
+import React from "react"
+import PropTypes from "prop-types"
+import { graphql } from "gatsby"
+import styled from "styled-components"
+import { MOBILE_MEDIA_QUERY } from "typography-breakpoint-constants"
 
-import Layout from '../components/Layout'
-import PostList from '../styled/PostList'
-import PostDetails from '../components/PostDetails'
-import SEO from '../components/SEO'
+import Layout from "../components/Layout"
+import PostList from "../styled/PostList"
+import Heading from "../styled/PostsHeading"
+import PostDetails from "../components/PostDetails"
+import SEO from "../components/SEO"
 
 const Container = styled.div`
   ${MOBILE_MEDIA_QUERY} {
@@ -19,22 +20,15 @@ const Container = styled.div`
   min-height: 80vh;
 `
 
-const Heading = styled.h1`
-  ${MOBILE_MEDIA_QUERY} {
-    font-size: 1.5rem;
-  }
-  font-weight: 900;
-`
-
 function Index({
   data: {
     allMarkdownRemark: { edges },
   },
 }) {
-  const heading = 'recent posts'
+  const heading = "recent posts"
   return (
     <Layout>
-      <SEO title={heading} keywords={['blog']} />
+      <SEO title={heading} keywords={["blog"]} />
       <Container>
         <Heading>{heading}</Heading>
         <PostList id="recent-posts">

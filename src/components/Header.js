@@ -1,10 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import { MOBILE_MEDIA_QUERY } from 'typography-breakpoint-constants'
+import React from "react"
+import PropTypes from "prop-types"
+import { Link } from "gatsby"
+import styled from "styled-components"
+import { MOBILE_MEDIA_QUERY } from "typography-breakpoint-constants"
 
-import Link from '../styled/LinkWithOverline'
-import { lightSeafoam, seafoam } from '../utils/colors'
+import { bg, text } from "../../janabeck.com/src/utils/colors"
 
 const ResponsiveHeader = styled.header`
   ${MOBILE_MEDIA_QUERY} {
@@ -12,8 +12,8 @@ const ResponsiveHeader = styled.header`
     padding-top: 0;
     width: calc(100% - 1rem);
   }
-  background-color: ${lightSeafoam};
-  border-bottom: 1px solid ${seafoam};
+  background-color: ${bg};
+  border-bottom: 1px solid ${text};
   left: 0;
   line-height: 51.2px;
   margin: 0 1rem 0.5rem;
@@ -39,19 +39,20 @@ const Nav = styled.nav`
 
 const BackLink = styled(Link)`
   font-size: 20px;
-  font-weight: 900;
-  &:hover {
-    text-decoration: none;
-  }
+  font-weight: 600;
+  text-decoration: none;
 `
 
 const NavLink = styled(Link).attrs(() => {
-  return { activeClassName: 'active' }
+  return { activeClassName: "active" }
 })`
   ${MOBILE_MEDIA_QUERY} {
     padding: 0 0.25rem;
   }
   font-weight: 400;
+  &.active {
+    font-weight: 800;
+  }
   padding: 0 0.75rem;
 `
 
