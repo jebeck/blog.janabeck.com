@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { seafoam } from '../utils/colors'
-import { rhythm } from '../utils/typography'
+import { rhythm } from '../../janabeck.com/src/utils/typography'
 
 const Tag = styled.div`
   background-color: ${seafoam};
@@ -25,7 +25,7 @@ function Tags({ tags }) {
         justifyContent: 'flex-end',
       }}
     >
-      {tags.map(tag => (
+      {tags.map((tag) => (
         <Tag key={tag}>{`#${tag}`}</Tag>
       ))}
     </div>

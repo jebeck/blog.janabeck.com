@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { rhythm } from '../utils/typography'
+import { rhythm } from '../../janabeck.com/src/utils/typography'
 
 function Footer() {
   const currentYear = new Date().getFullYear()

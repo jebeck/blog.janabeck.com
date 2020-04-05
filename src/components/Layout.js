@@ -7,7 +7,7 @@ import 'normalize.css'
 import Header from './Header'
 import Footer from './Footer'
 import GlobalStyles from '../styled/GlobalStyles'
-import { rhythm } from '../utils/typography'
+import { rhythm } from '../../janabeck.com/src/utils/typography'
 
 function Layout({ children, location }) {
   return (

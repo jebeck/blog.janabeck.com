@@ -20,7 +20,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-typography',
       options: {
-        pathToConfigModule: 'src/utils/typography',
+        pathToConfigModule: './janabeck.com/src/utils/typography',
       },
     },
     'gatsby-plugin-react-helmet',

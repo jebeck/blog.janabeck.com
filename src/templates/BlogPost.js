@@ -6,7 +6,7 @@ import { MOBILE_MEDIA_QUERY } from 'typography-breakpoint-constants'
 
 import { darkGrey, darkPurple } from '../utils/colors'
 import Layout from '../components/Layout'
-import { rhythm } from '../utils/typography'
+import { rhythm } from '../../janabeck.com/src/utils/typography'
 import SEO from '../components/SEO'
 import Tags from '../components/Tags'
 
