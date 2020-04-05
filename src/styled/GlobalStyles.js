@@ -15,6 +15,10 @@ const GlobalStyles = createGlobalStyle`
     color: ${text};
   }
 
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Exo 2';
+  }
+
   a {
     color: ${LINK_COLORS.base};
     text-decoration: underline double ${LINK_COLORS.underline};

@@ -8,7 +8,6 @@ const Heading = styled.h1`
     font-size: 1.5rem;
   }
   color: ${analogous[0]};
-  font-family: "Exo 2";
   font-weight: 900;
 `
 
