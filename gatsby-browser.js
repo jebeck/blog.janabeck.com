@@ -7,4 +7,5 @@
 import 'normalize.css'
 import 'prismjs/themes/prism.css'
 
-import 'typeface-lato'
+import 'typeface-exo-2'
+import 'typeface-source-sans-pro'

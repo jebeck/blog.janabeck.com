@@ -5,9 +5,15 @@
   "version": "0.1.0",
   "author": "Jana E. Beck <jana.eliz.beck@gmail.com>",
   "dependencies": {
+    "babel-eslint": "^10.0.1",
     "babel-plugin-styled-components": "^1.10.0",
+    "eslint": "^6.8.0",
+    "eslint-loader": "^4.0.0",
+    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-react": "^7.12.4",
     "gatsby": "^2.0.98",
     "gatsby-image": "^2.0.28",
+    "gatsby-plugin-eslint": "^2.0.3",
     "gatsby-plugin-google-analytics": "^2.0.10",
     "gatsby-plugin-manifest": "^2.0.13",
     "gatsby-plugin-netlify": "^2.0.7",
@@ -32,22 +38,20 @@
     "react-typography": "^0.16.18",
     "styled-components": "^5.0.1",
     "styled-theming": "^2.2.0",
-    "typeface-lato": "0.0.75",
+    "typeface-exo-2": "^1.1.4",
+    "typeface-source-sans-pro": "^1.1.5",
     "typography": "^0.16.18",
     "typography-breakpoint-constants": "^0.16.18"
   },
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "start": "gatsby develop"
+    "develop": "gatsby develop --host=0.0.0.0 --port=8081",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "serve": "gatsby serve",
+    "start": "npm run develop"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "eslint": "^6.8.0",
-    "eslint-loader": "^4.0.0",
-    "eslint-plugin-import": "^2.15.0",
-    "eslint-plugin-react": "^7.12.4",
-    "gatsby-plugin-eslint": "^2.0.3",
     "prettier": "^2.0.2"
   },
   "repository": {
