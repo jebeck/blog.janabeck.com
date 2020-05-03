@@ -1,12 +1,12 @@
 /* eslint-env node */
 
-const path = require('path')
-const { createFilePath } = require('gatsby-source-filesystem')
+const path = require("path")
+const { createFilePath } = require("gatsby-source-filesystem")
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const BlogPost = path.resolve('./src/templates/BlogPost.js')
+  const BlogPost = path.resolve("./src/templates/BlogPost.js")
   return graphql(
     `
       {
@@ -27,7 +27,7 @@ exports.createPages = ({ graphql, actions }) => {
         }
       }
     `
-  ).then(result => {
+  ).then((result) => {
     if (result.errors) {
       throw result.errors
     }
@@ -55,10 +55,10 @@ exports.createPages = ({ graphql, actions }) => {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
-  if (node.internal.type === 'MarkdownRemark') {
-    const value = createFilePath({ basePath: 'pages', node, getNode })
+  if (node.internal.type === "MarkdownRemark") {
+    const value = createFilePath({ basePath: "pages", node, getNode })
     createNodeField({
-      name: 'slug',
+      name: "slug",
       node,
       value,
     })
