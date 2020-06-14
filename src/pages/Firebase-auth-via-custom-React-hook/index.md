@@ -1,24 +1,24 @@
 ---
 date: 2019-01-27
-summary: 'A first pass at abstracting out Firebase e-mail & password auth via a custom React hook.'
+summary: "A first pass at abstracting out Firebase e-mail & password auth via a custom React hook."
 tags: [authentication, firebase, hooks, react]
-title: 'Firebase authentication via a custom React hook'
+title: "Firebase authentication via a custom React hook"
 ---
 
-I’m sure I don’t have to tell anyone that [hooks](https://reactjs.org/docs/hooks-intro.html 'React docs: Hooks') are the topic of much discussion in the React community of late. Members of the React core team introduced hooks at React Conf 2018, and Ryan Florence followed up with a deeper dive into some real-world examples. (You can watch all the hooks-related talks conveniently packaged together [in this video](https://www.youtube.com/watch?v=dpw9EHDh2bM&t=125s 'React Today and Tomorrow and 90% Cleaner React with Hooks')[^1].)
+I’m sure I don’t have to tell anyone that [hooks](https://reactjs.org/docs/hooks-intro.html "React docs: Hooks") are the topic of much discussion in the React community of late. Members of the React core team introduced hooks at React Conf 2018, and Ryan Florence followed up with a deeper dive into some real-world examples. (You can watch all the hooks-related talks conveniently packaged together [in this video](https://www.youtube.com/watch?v=dpw9EHDh2bM&t=125s "React Today and Tomorrow and 90% Cleaner React with Hooks")[^1].)
 
-I’ve got a personal project that uses [Firebase](https://firebase.google.com/ 'Firebase') for authentication and persistence, and I was already planning to start the front end from scratch for the fourth time[^2], so I decided to try doing it with hooks. The project is my personal data cloud—diabetes data, fitness tracker data, &c—and one of my desiderata in version 4 of the front end is to have the authentication piece(s)[^3] modularized so that I can extract it/them to spin off single-view, standalone, independently deployed (i.e., at different URLs from the main app) data visualizations of particular datasets. Since hooks are the new hotness as far as modular, composable React abstractions, I thought I’d start off v4 with an attempt at creating a custom `useFirebaseAuth` hook.
+I’ve got a personal project that uses [Firebase](https://firebase.google.com/ "Firebase") for authentication and persistence, and I was already planning to start the front end from scratch for the fourth time[^2], so I decided to try doing it with hooks. The project is my personal data cloud—diabetes data, fitness tracker data, &c—and one of my desiderata in version 4 of the front end is to have the authentication piece(s)[^3] modularized so that I can extract it/them to spin off single-view, standalone, independently deployed (i.e., at different URLs from the main app) data visualizations of particular datasets. Since hooks are the new hotness as far as modular, composable React abstractions, I thought I’d start off v4 with an attempt at creating a custom `useFirebaseAuth` hook.
 
 After some trial and error—including a massive memory leak in my browser at one point <span role='img' aria-label='sweat smile emoji'>😅</span>—I’ve got a `useFirebaseAuth` custom hook that I think is pretty nice. Read on for the details!
 
-<span role='img' aria-label='caution sign emoji'>⚠️</span> Remember: [don't rewrite your (production) apps with hooks!](https://reactjs.org/docs/hooks-faq.html#adoption-strategy 'React Hooks FAQ: Adoption strategy') This is a personal project and a greenfield app, so experimenting with hooks here is very much justified.
+<span role='img' aria-label='caution sign emoji'>⚠️</span> Remember: [don't rewrite your (production) apps with hooks!](https://reactjs.org/docs/hooks-faq.html#adoption-strategy "React Hooks FAQ: Adoption strategy") This is a personal project and a greenfield app, so experimenting with hooks here is very much justified.
 
 ## prerequisites
 
 This blog post assumes familiarity with:
 
-- current (ES6+) JavaScript, as configured in [create-react-app](https://facebook.github.io/create-react-app/docs/supported-browsers-features#supported-language-features 'CRA Docs: Supported Language Features')
-- React, including the hooks RFC (I recommend that you watch [the talks](https://www.youtube.com/watch?v=dpw9EHDh2bM&t=125s) mentioned above before reading this, and/or read Dan Abramov’s [“Making Sense of React Hooks”](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889 'Medium: Making Sense of React Hooks'))
+- current (ES6+) JavaScript, as configured in [create-react-app](https://facebook.github.io/create-react-app/docs/supported-browsers-features#supported-language-features "CRA Docs: Supported Language Features")
+- React, including the hooks RFC (I recommend that you watch [the talks](https://www.youtube.com/watch?v=dpw9EHDh2bM&t=125s) mentioned above before reading this, and/or read Dan Abramov’s [“Making Sense of React Hooks”](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889 "Medium: Making Sense of React Hooks"))
 
 (Normally I put an offer here to help if you’re interested in this material but don’t meet the prereqs, but in this case I don’t feel it’s appropriate: this is an advanced React blog post and only really appropriate for intermediate to advanced React users.[^4])
 
@@ -45,10 +45,10 @@ This blog post assumes familiarity with:
 Out of laziness more than a real need to abstract out the logic, I copied the `useFormInput` custom hook from Dan Abramov’s React Conf talk. Here’s what it looks like:
 
 ```jsx
-import { useState } from 'react'
+import { useState } from "react"
 
 export default function useFormInput(initialValue) {
-  const [value, setValue] = useState(initialValue || '')
+  const [value, setValue] = useState(initialValue || "")
 
   function handleChange(e) {
     setValue(e.target.value)
@@ -64,9 +64,9 @@ export default function useFormInput(initialValue) {
 Hooking these up to the HTML is just like in Dan’s talk:
 
 ```jsx
-import React from 'react'
+import React from "react"
 
-import useFormInput from './hooks/useFormInput'
+import useFormInput from "./hooks/useFormInput"
 
 export default function App() {
   const email = useFormInput()
@@ -91,11 +91,11 @@ Authentication for a Firebase app is a little different than standard auth via a
 firebase
   .auth()
   .signInWithEmailAndPassword(email, password)
-  .catch(err => {
+  .catch((err) => {
     // do something to surface the error
   })
 
-firebase.auth().onAuthStateChanged(user => {
+firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     // do something to set the current user in the app's state
   } else {
@@ -104,39 +104,36 @@ firebase.auth().onAuthStateChanged(user => {
 })
 ```
 
-So what do we need to wrap up this Firebase-specific logic in a custom hook? Even though the above code doesn’t contain any explicit API calls, that’s still what’s going on under the hood, and such requests out to external resources are side effects, which means we’ll need [the `useEffect` hook](https://reactjs.org/docs/hooks-effect.html 'Using the Effect Hook').
+So what do we need to wrap up this Firebase-specific logic in a custom hook? Even though the above code doesn’t contain any explicit API calls, that’s still what’s going on under the hood, and such requests out to external resources are side effects, which means we’ll need [the `useEffect` hook](https://reactjs.org/docs/hooks-effect.html "Using the Effect Hook").
 
 So, a very rough sketch:
 
 ```jsx
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import { useEffect } from 'react'
+import firebase from "firebase/app"
+import "firebase/auth"
+import { useEffect } from "react"
 
 firebase.initializeApp({
   // Firebase app init, deets unimportant here
 })
 
 export default function useFirebaseAuth(email, password) {
-  useEffect(
-    () => {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password)
-        .catch(err => {
-          // do something to surface the error
-        })
-
-      firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-          // do something to set the current user in the app's state
-        } else {
-          // do something to clear current user info/redirect to login page
-        }
+  useEffect(() => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch((err) => {
+        // do something to surface the error
       })
-    },
-    [email, password]
-  )
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // do something to set the current user in the app's state
+      } else {
+        // do something to clear current user info/redirect to login page
+      }
+    })
+  }, [email, password])
 
   // return something???
 }
@@ -153,10 +150,10 @@ Dan spent a lot of time in his talk working on examples involving `<input>`s, bu
 So here's the full `useFirebaseAuth` custom hook that I’ve ended up with, including three additional `useState` calls to track not just the form submission status but also the results of login—i.e., the current logged-in user—and any login errors that might occur:
 
 ```jsx
-import _ from 'lodash'
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import { useEffect, useState } from 'react'
+import _ from "lodash"
+import firebase from "firebase/app"
+import "firebase/auth"
+import { useEffect, useState } from "react"
 
 firebase.initializeApp({
   // Firebase app init, deets unimportant here
@@ -174,30 +171,27 @@ export default function useFirebaseLogin(email, password) {
     setSubmitted(true)
   }
 
-  useEffect(
-    () => {
-      if (email && password && submitted) {
-        firebase
-          .auth()
-          .signInWithEmailAndPassword(email, password)
-          .catch(err => {
-            setLoginError(_.pick(err, ['code', 'message']))
-            setSubmitted(false)
-          })
-
-        firebase.auth().onAuthStateChanged(user => {
-          if (user) {
-            setUser(user)
-            setSubmitted(false)
-          } else {
-            setUser(null)
-            setSubmitted(false)
-          }
+  useEffect(() => {
+    if (email && password && submitted) {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .catch((err) => {
+          setLoginError(_.pick(err, ["code", "message"]))
+          setSubmitted(false)
         })
-      }
-    },
-    [email, password, submitted]
-  )
+
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          setUser(user)
+          setSubmitted(false)
+        } else {
+          setUser(null)
+          setSubmitted(false)
+        }
+      })
+    }
+  }, [email, password, submitted])
 
   return { loginError, onSubmit: handleSubmit, submitted, user }
 }
@@ -227,31 +221,28 @@ function handleSubmit(e) {
 Finally, the `useEffect` call, which is similar, but not quite the same as before:
 
 ```jsx
-useEffect(
-  () => {
-    if (email && password && submitted) {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password)
-        .catch(err => {
-          setLoginError(_.pick(err, ['code', 'message']))
-          // reset submitted state to allow for trying again
-          setSubmitted(false)
-        })
-
-      firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-          setUser(user)
-          // no need to setSubmitted(false); here
-          // assuming page will redirect from /login elsewhere...
-        } else {
-          setUser(null)
-        }
+useEffect(() => {
+  if (email && password && submitted) {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch((err) => {
+        setLoginError(_.pick(err, ["code", "message"]))
+        // reset submitted state to allow for trying again
+        setSubmitted(false)
       })
-    }
-  },
-  [email, password, submitted]
-)
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user)
+        // no need to setSubmitted(false); here
+        // assuming page will redirect from /login elsewhere...
+      } else {
+        setUser(null)
+      }
+    })
+  }
+}, [email, password, submitted])
 ```
 
 Now we’ve got the `submitted`variable to tell us whether the user has clicked the login button yet or not, and so we don’t actually employ the Firebase client library methods—`signInWithEmailAndPassword` and `onAuthStateChanged`—until we have non-empty `email` and `password` _and_ a truthy `submitted` flag. Before I added this conditional logic and put _both_ client library method calls inside it, I created a tab-killing memory leak by setting up a new auth observer on every render! Note how I’ve also added `submitted` to the list of variables (in the second argument to `useEffect`) that will trigger a call of the effect function if they change.
@@ -261,8 +252,8 @@ Finally, the custom hook returns the caught login error, if any, the submit hand
 Which brings us to the `<Login>` component itself! Showing just the important details, it will look something like the following:
 
 ```jsx
-import useFirebaseAuth from './hooks/useFirebaseAuth'
-import useFormInput from './hooks/useFormInput'
+import useFirebaseAuth from "./hooks/useFirebaseAuth"
+import useFormInput from "./hooks/useFormInput"
 
 export default function Login() {
   const email = useFormInput()
@@ -282,9 +273,9 @@ export default function Login() {
       <form onSubmit={onSubmit}>
         <input {...email} />
         <input {...password} />
-        <button type="submit">{submitted ? 'logging in...' : 'log in'}</button>
+        <button type="submit">{submitted ? "logging in..." : "log in"}</button>
       </form>
-      <h1>{user ? 'Logged in!' : 'Not logged in'}</h1>
+      <h1>{user ? "Logged in!" : "Not logged in"}</h1>
       {loginError ? <h2>{`Login error: ${loginError.message}`}</h2> : null}
     </div>
   )
@@ -298,5 +289,5 @@ Note how using the sentinel variable `submitted` to prevent the effect function 
 [^1]: I recommend watching at 1.25x speed because I’m one of those weirdos.
 [^2]: Why I’ve restarted the front end to the project so many times is a story for another time…
 [^3]: For now just normal, e-mail & password Firebase login, but eventually I plan to implement Firebase’s anonymous login feature, which I expect to be the main login type used on the standalone “apps.”
-[^4]: If you aren’t familiar with React, I recommend starting with [the official tutorial](https://reactjs.org/tutorial/tutorial.html 'React Tutorial') and leveling up from there! If you need advice regarding how to level up after completing the tutorial, feel free to [reach out](mailto:jana.eliz.beck@gmail.com 'E-mail jana.eliz.beck@gmail.com').
+[^4]: If you aren’t familiar with React, I recommend starting with [the official tutorial](https://reactjs.org/tutorial/tutorial.html "React Tutorial") and leveling up from there! If you need advice regarding how to level up after completing the tutorial, feel free to [reach out](mailto:jana.eliz.beck@gmail.com "E-mail jana.eliz.beck@gmail.com").
 [^5]: As of the time of this writing, in January 2019.

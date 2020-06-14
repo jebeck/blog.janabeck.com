@@ -38,6 +38,7 @@ module.exports = {
       resolve: "gatsby-transformer-remark",
       options: {
         plugins: [
+          "gatsby-remark-copy-linked-files",
           {
             resolve: "gatsby-remark-external-links",
             options: {
@@ -46,6 +47,12 @@ module.exports = {
             },
           },
           "gatsby-remark-prismjs",
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 720,
+            },
+          },
         ],
       },
     },
