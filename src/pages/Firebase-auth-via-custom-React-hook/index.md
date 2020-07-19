@@ -286,6 +286,8 @@ Note how using the sentinel variable `submitted` to prevent the effect function 
 
 <span role='img' aria-label='finger pointing up emoji'>☝</span>: Remember that[^5] you need to install `react@next` (and `react-dom@next`) to try out hooks/be able to import any of the built-in hooks like `useState`.
 
+<hr style="border: 0; height: 1px; background-color: #FF5D73;/>
+
 [^1]: I recommend watching at 1.25x speed because I’m one of those weirdos.
 [^2]: Why I’ve restarted the front end to the project so many times is a story for another time…
 [^3]: For now just normal, e-mail & password Firebase login, but eventually I plan to implement Firebase’s anonymous login feature, which I expect to be the main login type used on the standalone “apps.”
