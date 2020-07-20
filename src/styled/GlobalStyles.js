@@ -65,6 +65,15 @@ const GlobalStyles = createGlobalStyle`
       text-decoration: none;
     }
   }
+  /* to fix where anchor links land bc of non-scrolling nav header */
+    li[id*="fn-"]::before {
+      content: " ";
+      display: block;
+      height: 3rem;
+      margin-top: -3rem;
+      pointer-events: none;
+      visibility: hidden;
+    }
   /* endfor */
 `
 
