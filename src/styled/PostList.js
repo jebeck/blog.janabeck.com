@@ -10,9 +10,6 @@ const PostList = styled.ul`
   }
   list-style-type: none;
   padding: ${rhythm(1)};
-  li {
-    margin-bottom: 0;
-  }
 `
 
 export default addGradientBorder(PostList)
